@@ -4,9 +4,29 @@
     <div class="container">
         <div class="page-inner">
             <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
-                <div>
-                    <h3 class="fw-bold mb-3 fs-3">Edit Gallery</h3>
+                <div class="page-header">
+                    <h3 class="fw-bold mb-3 fs-3">Edit Galleri</h3>
+                    <ul class="breadcrumbs mb-3">
+                        <li class="nav-home">
+                            <a href="{{ route('dashboard') }}">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="icon-arrow-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('galleries.index') }}">Galeri</a>
+                        </li>
+                        <li class="separator">
+                            <i class="icon-arrow-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Edit Galeri</a>
+                        </li>
+                    </ul>
                 </div>
+
             </div>
 
             <!-- Form untuk update gallery -->
@@ -22,7 +42,7 @@
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Name *</label>
+                                    <label for="name" class="form-label">Nama *</label>
                                     <input type="text" class="form-control" id="name" name="name" required
                                         value="{{ old('name', $gallery->name) }}">
                                 </div>
@@ -36,7 +56,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="description" class="form-label">Description *</label>
+                                    <label for="description" class="form-label">Deskripsi *</label>
                                     <textarea class="form-control" id="description" name="description" rows="3" required>{{ old('description', $gallery->description) }}</textarea>
                                 </div>
 
@@ -56,9 +76,8 @@
                         <!-- Gallery Images Section -->
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="mt-4">Gallery Images</h5>
-                                <button type="button" class="btn btn-secondary mb-3" onclick="openFileManager()">Select
-                                    Images</button>
+                                <h5 class="mt-4">Gambar</h5>
+                                <button type="button" class="btn btn-secondary mb-3" onclick="openFileManager()">Pilih Gambar</button>
                                 {{-- <button type="button" class="btn btn-danger mb-3" onclick="resetGallery()">Reset
                             Gallery</button> --}}
 

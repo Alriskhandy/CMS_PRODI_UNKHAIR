@@ -18,7 +18,7 @@
                     onsubmit="return confirmSubmit()">
                     @csrf
                     <input type="file" name="file" id="fileInput" style="display:none;">
-                    <button type="button" onclick="openFileManager()">Select File</button>
+                    <button type="button" onclick="openFileManager()">Pilih Dokumen</button>
                     <input type="hidden" name="file_url" id="fileUrl">
                     <button type="submit">Upload</button>
                 </form>

@@ -4,8 +4,27 @@
     <div class="container">
         <div class="page-inner">
             <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
-                <div>
-                    <h3 class="fw-bold mb-3 fs-3">Settings</h3>
+                <div class="page-header">
+                    <h3 class="fw-bold mb-3 fs-3">Pengaturan</h3>
+                    <ul class="breadcrumbs mb-3">
+                        <li class="nav-home">
+                            <a href="{{ route('dashboard') }}">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="icon-arrow-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Pengaturan</a>
+                        </li>
+                        <li class="separator">
+                            <i class="icon-arrow-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Umum</a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="ms-md-auto py-2 py-md-0">
                     {{-- <a href="#" class="btn btn-label-info btn-round me-2">Manage</a> --}}
@@ -52,7 +71,7 @@
                                                 <input type="text" name="app_url" id="app_url"
                                                     value="{{ $settings['app_url'] ?? '' }}" class="form-control">
                                             </div> --}}
-                                            <button type="submit" class="btn btn-primary mt-3">Simpan Pengaturan</button>
+                                            <button type="submit" class="btn btn-primary mt-3">Simpan Perubahan</button>
                                         </div>
                                     </div>
                                 </form>

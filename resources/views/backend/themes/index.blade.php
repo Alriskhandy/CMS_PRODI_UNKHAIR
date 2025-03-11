@@ -5,7 +5,7 @@
         <div class="page-inner">
             <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                 <div class="page-header">
-                    <h3 class="fw-bold mb-3 fs-3">Themes</h3>
+                    <h3 class="fw-bold mb-3 fs-3">Semua Tema</h3>
                     <ul class="breadcrumbs mb-3">
                         <li class="nav-home">
                             <a href="{{ route('dashboard') }}">
@@ -16,7 +16,7 @@
                             <i class="icon-arrow-right"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Themes</a>
+                            <a href="#">Tema</a>
                         </li>
                     </ul>
                     <div class="ms-md-auto py-2 py-md-0">

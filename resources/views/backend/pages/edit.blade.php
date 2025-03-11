@@ -1,87 +1,88 @@
 @extends('backend.layouts.main', ['title' => 'Edit Page'])
 
 @section('body')
-    <div class="container">
-        <div class="page-inner">
-            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
-                <div class="page-header">
-                    <h3 class="fw-bold mb-3 fs-3">Edit Pages</h3>
-                    <ul class="breadcrumbs mb-3">
-                        <li class="nav-home">
-                            <a href="{{ route('dashboard') }}">
-                                <i class="icon-home"></i>
-                            </a>
-                        </li>
-                        <li class="separator">
-                            <i class="icon-arrow-right"></i>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('pages.index') }}">Pages</a>
-                        </li>
-                        <li class="separator">
-                            <i class="icon-arrow-right"></i>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#">Edit Pages</a>
-                        </li>
-                    </ul>
-                </div>
+<div class="container">
+    <div class="page-inner">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+            <div class="page-header">
+                <h3 class="fw-bold mb-3 fs-3">Edit Halaman</h3>
+                <ul class="breadcrumbs mb-3">
+                    <li class="nav-home">
+                        <a href="{{ route('dashboard') }}">
+                            <i class="icon-home"></i>
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="icon-arrow-right"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('pages.index') }}">Semua Halaman</a>
+                    </li>
+                    <li class="separator">
+                        <i class="icon-arrow-right"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Edit Halaman</a>
+                    </li>
+                </ul>
             </div>
-            <form method="POST" action="{{ route('pages.update', $page->id) }}">
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="card">
-                            <div class="card-body">
-                                @csrf
-                                @method('PUT')
-                                <!-- Title Field -->
-                                <div class="mb-3">
-                                    <label for="title" class="form-label">Judul</label>
-                                    <input type="text" name="title" id="title"
-                                        value="{{ old('title', $page->title) }}" class="form-control" required>
-                                </div>
-
-                                <!-- Slug Field -->
-                                <div class="mb-3">
-                                    <label for="slug" class="form-label">Slug</label>
-                                    <input type="text" id="slug-display" class="form-control"
-                                        value="{{ old('slug', $page->slug) }}" readonly>
-                                    <input type="hidden" name="slug" id="slug"
-                                        value="{{ old('slug', $page->slug) }}" required>
-                                </div>
-
-                                <!-- Content Field -->
-                                <div class="mb-3">
-                                    <label for="content" class="form-label">Konten</label>
-                                    <textarea name="content" id="editor" class="form-control" rows="10">{{ old('content', $page->content) }}</textarea>
-                                </div>
-
-                                <!-- Status Field -->
-                                <div class="mb-3">
-                                    <label for="status" class="form-label">Status</label>
-                                    <select name="status" id="status" class="form-control" required>
-                                        <option value="aktif"
-                                            {{ old('status') == 'aktif' || $page->status == 'aktif' ? 'selected' : '' }}>
-                                            Aktif</option>
-                                        <option value="nonaktif"
-                                            {{ old('status') == 'nonaktif' || $page->status == 'nonaktif' ? 'selected' : '' }}>
-                                            Nonaktif</option>
-                                    </select>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+        <form method="POST" action="{{ route('pages.update', $page->id) }}">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="card">
+                        <div class="card-body">
+                            @csrf
+                            @method('PUT')
+                            <!-- Title Field -->
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Judul</label>
+                                <input type="text" name="title" id="title" value="{{ old('title', $page->title) }}"
+                                    class="form-control" required>
                             </div>
+
+                            <!-- Slug Field -->
+                            <div class="mb-3">
+                                <label for="slug" class="form-label">Slug</label>
+                                <input type="text" id="slug-display" class="form-control"
+                                    value="{{ old('slug', $page->slug) }}" readonly>
+                                <input type="hidden" name="slug" id="slug" value="{{ old('slug', $page->slug) }}"
+                                    required>
+                            </div>
+
+                            <!-- Content Field -->
+                            <div class="mb-3">
+                                <label for="content" class="form-label">Konten</label>
+                                <textarea name="content" id="editor" class="form-control"
+                                    rows="10">{{ old('content', $page->content) }}</textarea>
+                            </div>
+
+                            <!-- Status Field -->
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Status</label>
+                                <select name="status" id="status" class="form-control" required>
+                                    <option value="aktif" {{ old('status')=='aktif' || $page->status == 'aktif' ?
+                                        'selected' : '' }}>
+                                        Aktif</option>
+                                    <option value="nonaktif" {{ old('status')=='nonaktif' || $page->status == 'nonaktif'
+                                        ? 'selected' : '' }}>
+                                        Nonaktif</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
+</div>
 
-    <!-- Sertakan skrip TinyMCE untuk editor teks -->
-    <script src="{{ asset('backend/tinymce/tinymce.min.js') }}"></script>
-    <script>
-        const baseURL = "{{ url('/') }}/";
+<!-- Sertakan skrip TinyMCE untuk editor teks -->
+<script src="{{ asset('backend/tinymce/tinymce.min.js') }}"></script>
+<script>
+    const baseURL = "{{ url('/') }}/";
 
         document.getElementById('title').addEventListener('input', function() {
             const title = this.value;
@@ -136,5 +137,5 @@
                 });
             }
         });
-    </script>
+</script>
 @endsection
