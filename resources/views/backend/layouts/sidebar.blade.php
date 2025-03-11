@@ -36,30 +36,30 @@
                      <span class="sidebar-mini-icon">
                          <i class="fa fa-ellipsis-h"></i>
                      </span>
-                     <h4 class="text-section">Pages</h4>
+                     <h4 class="text-section">Halaman</h4>
                  </li>
 
                  <li class="nav-item {{ request()->routeIs('posts.*') ? 'active submenu' : '' }}">
                      <a data-bs-toggle="collapse" href="#base">
                          <i class="fas fa-newspaper"></i>
-                         <p>Posts</p>
+                         <p>Postingan</p>
                          <span class="caret"></span>
                      </a>
                      <div class="collapse {{ request()->routeIs('posts.*') ? 'show' : '' }}" id="base">
                          <ul class="nav nav-collapse">
                              <li class="{{ request()->routeIs(['posts.index', 'posts.edit']) ? 'active' : '' }}">
                                  <a href="{{ route('posts.index') }}">
-                                     <span class="sub-item">All Posts</span>
+                                     <span class="sub-item">Semua Postingan</span>
                                  </a>
                              </li>
                              <li class="{{ request()->routeIs('posts.create') ? 'active' : '' }}">
                                  <a href="{{ route('posts.create') }}">
-                                     <span class="sub-item">Add Posts</span>
+                                     <span class="sub-item">Tambah Postingan</span>
                                  </a>
                              </li>
                              <li class="{{ request()->routeIs('posts.categories.index') ? 'active' : '' }}">
                                  <a href="{{ route('posts.categories.index') }}">
-                                     <span class="sub-item">Categories</span>
+                                     <span class="sub-item">Kategori Postingan</span>
                                  </a>
                              </li>
                          </ul>
@@ -69,7 +69,7 @@
                  <li class="nav-item {{ request()->routeIs('galleries.*') ? 'active' : '' }}">
                      <a href="{{ route('galleries.index') }}">
                          <i class="fas fa-camera"></i>
-                         <p>Galleries</p>
+                         <p>Galeri</p>
                      </a>
                  </li>
 
@@ -83,7 +83,7 @@
                  <li class="nav-item ">
                      <a href="{{ route('comments.index') }}">
                          <i class="fab fa-facebook-messenger"></i>
-                         <p>Comments</p>
+                         <p>Komentar</p>
                          {{-- <span class="badge badge-secondary">2000</span> --}}
                          @if ($unreadCommentsCount)
                              <span class="badge badge-secondary">{{ $unreadCommentsCount }}</span>
@@ -94,7 +94,7 @@
                  <li class="nav-item {{ request()->routeIs('tema.index') ? 'active' : '' }}">
                      <a href="{{ route('tema.index') }}">
                          <i class="far fa-window-restore"></i>
-                         <p>Themes</p>
+                         <p>Tema</p>
                      </a>
                  </li>
 
@@ -102,25 +102,25 @@
                      <span class="sidebar-mini-icon">
                          <i class="fa fa-ellipsis-h"></i>
                      </span>
-                     <h4 class="text-section">Settings</h4>
+                     <h4 class="text-section">Pengaturan</h4>
                  </li>
 
                  <li class="nav-item {{ request()->routeIs('pages.*') ? 'active submenu' : '' }}">
                      <a data-bs-toggle="collapse" href="#laman">
                          <i class="fas fa-file"></i>
-                         <p>Pages</p>
+                         <p>Halaman</p>
                          <span class="caret"></span>
                      </a>
                      <div class="collapse {{ request()->routeIs('pages.*') ? 'show' : '' }}" id="laman">
                          <ul class="nav nav-collapse">
                              <li class="{{ request()->routeIs(['pages.index', 'pages.edit']) ? 'active' : '' }}">
                                  <a href="{{ route('pages.index') }}">
-                                     <span class="sub-item">All Pages</span>
+                                     <span class="sub-item">Semua Halaman</span>
                                  </a>
                              </li>
                              <li class="{{ request()->routeIs('pages.create') ? 'active' : '' }}">
                                  <a href="{{ route('pages.create') }}">
-                                     <span class="sub-item">Create Page</span>
+                                     <span class="sub-item">Buat Halaman</span>
                                  </a>
                              </li>
                          </ul>
@@ -137,19 +137,19 @@
                  <li class="nav-item {{ request()->routeIs('users.*') ? 'active submenu' : '' }}">
                      <a data-bs-toggle="collapse" href="#charts">
                          <i class="fas fa-cogs"></i>
-                         <p>Settings</p>
+                         <p>Pengaturan</p>
                          <span class="caret"></span>
                      </a>
                      <div class="collapse {{ request()->routeIs('settings.*') ? 'show' : '' }}" id="charts">
                          <ul class="nav nav-collapse">
                              <li class="{{ request()->routeIs('settings.index') ? 'active' : '' }}">
                                  <a href="{{ route('settings.index') }}">
-                                     <span class="sub-item">General</span>
+                                     <span class="sub-item">Umum</span>
                                  </a>
                              </li>
                              <li>
                                  <a href="#">
-                                     <span class="sub-item">Users</span>
+                                     <span class="sub-item">Pengguna</span>
                                  </a>
                              </li>
                          </ul>

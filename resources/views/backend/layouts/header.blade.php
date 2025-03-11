@@ -23,8 +23,8 @@
     <!-- Navbar Header -->
     <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
         <div class="container-fluid d-flex justify-content-between align-items-center">
-            <!-- Centered Search Icon Trigger for Modal -->
-            <div class="d-flex justify-content-center flex-grow-1">
+            <!-- Start Search Icon Trigger for Modal -->
+            <div class="d-flex justify-content-start flex-grow-1">
                 <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#searchModal">
                     <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
                         <div class="input-group search-input">
@@ -43,7 +43,7 @@
             <ul class="navbar-nav align-items-center">
                 <li class="nav-item">
                     <a class="btn btn-primary" href="/" target="_blank" role="button">
-                        <i class="fa fa-globe me-1"></i> Visit Website
+                        <i class="fa fa-globe me-1"></i> Kunjungi Situs
                     </a>
                 </li>
 
@@ -131,95 +131,10 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-item topbar-icon dropdown hidden-caret">
-                    <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-envelope"></i>
-                    </a>
-                    <ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
-                        <li>
-                            <div class="dropdown-title d-flex justify-content-between align-items-center">
-                                Messages
-                                <a href="#" class="small">Mark all as read</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="scroll-wrapper message-notif-scroll scrollbar-outer"
-                                style="position: relative;">
-                                <div class="message-notif-scroll scrollbar-outer scroll-content"
-                                    style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 0px;">
-                                    <div class="notif-center">
-                                        <a href="#">
-                                            <div class="notif-img">
-                                                <img src="../assets/img/jm_denis.jpg" alt="Img Profile">
-                                            </div>
-                                            <div class="notif-content">
-                                                <span class="subject">Jimmy Denis</span>
-                                                <span class="block"> How are you ? </span>
-                                                <span class="time">5 minutes ago</span>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="notif-img">
-                                                <img src="../assets/img/chadengle.jpg" alt="Img Profile">
-                                            </div>
-                                            <div class="notif-content">
-                                                <span class="subject">Chad</span>
-                                                <span class="block"> Ok, Thanks ! </span>
-                                                <span class="time">12 minutes ago</span>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="notif-img">
-                                                <img src="../assets/img/mlane.jpg" alt="Img Profile">
-                                            </div>
-                                            <div class="notif-content">
-                                                <span class="subject">Jhon Doe</span>
-                                                <span class="block">
-                                                    Ready for the meeting today...
-                                                </span>
-                                                <span class="time">12 minutes ago</span>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="notif-img">
-                                                <img src="../assets/img/talha.jpg" alt="Img Profile">
-                                            </div>
-                                            <div class="notif-content">
-                                                <span class="subject">Talha</span>
-                                                <span class="block"> Hi, Apa Kabar ? </span>
-                                                <span class="time">17 minutes ago</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="scroll-element scroll-x">
-                                    <div class="scroll-element_outer">
-                                        <div class="scroll-element_size"></div>
-                                        <div class="scroll-element_track"></div>
-                                        <div class="scroll-bar"></div>
-                                    </div>
-                                </div>
-                                <div class="scroll-element scroll-y">
-                                    <div class="scroll-element_outer">
-                                        <div class="scroll-element_size"></div>
-                                        <div class="scroll-element_track"></div>
-                                        <div class="scroll-bar"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a class="see-all" href="javascript:void(0);">See all messages<i
-                                    class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
                 </li> --}}
+
                 <li class="nav-item topbar-user dropdown hidden-caret">
-                    <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
-                        aria-expanded="false">
+                    <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
                         <div class="avatar-sm">
                             <img src="{{ asset('backend/assets/img/profile-logo.png') }}" alt="..."
                                 class="avatar-img rounded-circle" />
@@ -245,7 +160,7 @@
                             </li>
                             <li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">Account Setting</a>
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">Pengaturan Akun</a>
                                 <div class="dropdown-divider"></div>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -304,95 +219,95 @@
 </div>
 
 @push('css')
-    <style>
-        .modal-body {
-            position: relative;
-        }
+<style>
+    .modal-body {
+        position: relative;
+    }
 
-        #searchInput {
-            font-size: 16px;
-            padding: 10px;
-            border-radius: 6px;
-        }
+    #searchInput {
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 6px;
+    }
 
-        #searchResults {
-            max-height: 300px;
-            overflow-y: auto;
-            list-style-type: none;
-            margin-top: 10px;
-            padding: 0;
-        }
+    #searchResults {
+        max-height: 300px;
+        overflow-y: auto;
+        list-style-type: none;
+        margin-top: 10px;
+        padding: 0;
+    }
 
-        #searchResults .search-item {
-            padding: 10px 15px;
-            border-bottom: 1px solid #f1f1f1;
-        }
+    #searchResults .search-item {
+        padding: 10px 15px;
+        border-bottom: 1px solid #f1f1f1;
+    }
 
-        #searchResults .search-item a {
-            text-decoration: none;
-            color: #333;
-            font-size: 15px;
-            display: block;
-        }
+    #searchResults .search-item a {
+        text-decoration: none;
+        color: #333;
+        font-size: 15px;
+        display: block;
+    }
 
-        #searchResults .search-item:hover {
-            background-color: #f9f9f9;
-        }
+    #searchResults .search-item:hover {
+        background-color: #f9f9f9;
+    }
 
-        #searchResults .list-group-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            border: none;
-            /* Remove borders for a cleaner look */
-            border-bottom: 1px solid #e6e6e6;
-            /* Divider between items */
-        }
+    #searchResults .list-group-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        border: none;
+        /* Remove borders for a cleaner look */
+        border-bottom: 1px solid #e6e6e6;
+        /* Divider between items */
+    }
 
-        #searchResults .list-group-item:last-child {
-            border-bottom: none;
-            /* Remove border for the last item */
-        }
+    #searchResults .list-group-item:last-child {
+        border-bottom: none;
+        /* Remove border for the last item */
+    }
 
-        #searchResults .list-group-item i {
-            color: #007bff;
-            /* Customize icon color */
-        }
+    #searchResults .list-group-item i {
+        color: #007bff;
+        /* Customize icon color */
+    }
 
-        #searchResults .list-group-item:hover {
-            background-color: #f8f9fa;
-            text-decoration: none;
-            cursor: pointer;
-        }
+    #searchResults .list-group-item:hover {
+        background-color: #f8f9fa;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
-        #searchResults .list-group-item span {
-            font-size: 15px;
-            color: #333;
-        }
+    #searchResults .list-group-item span {
+        font-size: 15px;
+        color: #333;
+    }
 
-        .shortcut-helper {
-            font-size: 0.85em;
-            color: #6c757d;
-            /* Text-muted color */
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    .shortcut-helper {
+        font-size: 0.85em;
+        color: #6c757d;
+        /* Text-muted color */
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
 
-        .shortcut-helper kbd {
-            background-color: #e9ecef;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-size: 0.85em;
-            font-weight: 500;
-        }
-    </style>
+    .shortcut-helper kbd {
+        background-color: #e9ecef;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-size: 0.85em;
+        font-weight: 500;
+    }
+</style>
 @endpush
 
 @push('scripts')
-    <!-- JavaScript for Dynamic Search -->
-    <script>
-        document.getElementById('searchInput').addEventListener('input', function() {
+<!-- JavaScript for Dynamic Search -->
+<script>
+    document.getElementById('searchInput').addEventListener('input', function() {
             let query = this.value.trim();
 
             if (query.length > 0) {
@@ -477,5 +392,5 @@
         document.getElementById('searchModal').addEventListener('shown.bs.modal', function() {
             document.getElementById('searchInput').focus();
         });
-    </script>
+</script>
 @endpush

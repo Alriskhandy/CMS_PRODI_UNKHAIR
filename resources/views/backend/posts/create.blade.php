@@ -5,7 +5,7 @@
         <div class="page-inner">
             <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                 <div class="page-header">
-                    <h3 class="fw-bold mb-3 fs-3">Add Post</h3>
+                    <h3 class="fw-bold mb-3 fs-3">Tambah Postingan</h3>
                     <ul class="breadcrumbs mb-3">
                         <li class="nav-home">
                             <a href="{{ route('dashboard') }}">
@@ -16,13 +16,13 @@
                             <i class="icon-arrow-right"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('posts.index') }}">Posts</a>
+                            <a href="{{ route('posts.index') }}">Semua Postingan</a>
                         </li>
                         <li class="separator">
                             <i class="icon-arrow-right"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Add Post</a>
+                            <a href="#">Tambah Postingan</a>
                         </li>
                     </ul>
                     </ul>
@@ -93,9 +93,9 @@
                             <div class="card-body">
 
                                 <div class="mb-3">
-                                    <label for="category_id" class="form-label">Category</label>
+                                    <label for="category_id" class="form-label">Kategori</label>
                                     <select name="category_id" id="category_id" class="form-control" required>
-                                        <option value="" disabled selected>-- Select Category --</option>
+                                        <option value="" disabled selected>-- Pilih Kategori --</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}"
                                                 {{ old('category_id') == $category->id ? 'selected' : '' }}>
@@ -130,7 +130,7 @@
                         {{-- comments --}}
                         <div class="card">
                             <div class="card-body">
-                                <label for="category" class="form-label">Comments</label>
+                                <label for="category" class="form-label">Komentar</label>
                                 <div class="mb-3">
                                     <small class="text-muted">Aktifkan untuk izinkan komentar</small>
                                     <div class="d-flex">
