@@ -15,7 +15,7 @@
 return [
 
     /**
-     *
+     *N
      * The site key
      * get site key @ www.google.com/recaptcha/admin
      *

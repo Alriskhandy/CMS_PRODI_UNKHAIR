@@ -13,70 +13,68 @@
         <nav id="navmenu" class="navmenu">
             <ul>
 
-                <li><a href="/">Home</a></li>
+                <li><a href="/">Beranda</a></li>
                 @foreach ($menus as $menu)
-                    @foreach ($menu->items as $item)
-                        <li class="{{ $item->children->isNotEmpty() ? 'dropdown' : '' }}">
-                            <!-- Conditional logic for page, post, or custom link -->
-                            <a href="{{ $item->page
+                @foreach ($menu->items as $item)
+                <li class="{{ $item->children->isNotEmpty() ? 'dropdown' : '' }}">
+                    <!-- Conditional logic for page, post, or custom link -->
+                    <a href="{{ $item->page
                                 ? route('pages.show', $item->page->slug)
                                 : ($item->post
                                     ? route('posts.show', $item->post->slug)
                                     : ($item->category
                                         ? route('categories.show', $item->category->slug)
                                         : $item->url)) }}"
-                                class="{{ $item->children->isNotEmpty() ? 'dropdown-toggle' : '' }}"
-                                {{ $item->children->isNotEmpty() ? 'data-toggle=dropdown' : '' }}>
-                                {{ $item->label }}
-                            </a>
+                        class="{{ $item->children->isNotEmpty() ? 'dropdown-toggle' : '' }}" {{
+                        $item->children->isNotEmpty() ? 'data-toggle=dropdown' : '' }}>
+                        {{ $item->label }}
+                    </a>
 
-                            <!-- First-level dropdown menu -->
-                            @if ($item->children->isNotEmpty())
-                                <ul class="dropdown-menu">
-                                    @foreach ($item->children as $child)
-                                        <li class="{{ $child->children->isNotEmpty() ? 'dropdown' : '' }}">
-                                            <!-- Conditional logic for child items (page, post, category) -->
-                                            <a href="{{ $child->page
+                    <!-- First-level dropdown menu -->
+                    @if ($item->children->isNotEmpty())
+                    <ul class="dropdown-menu">
+                        @foreach ($item->children as $child)
+                        <li class="{{ $child->children->isNotEmpty() ? 'dropdown' : '' }}">
+                            <!-- Conditional logic for child items (page, post, category) -->
+                            <a href="{{ $child->page
                                                 ? route('pages.show', $child->page->slug)
                                                 : ($child->post
                                                     ? route('posts.show', $child->post->slug)
                                                     : ($child->category
                                                         ? route('categories.show', $child->category->slug)
                                                         : $child->url)) }}"
-                                                class="{{ $child->children->isNotEmpty() ? 'dropdown-toggle' : '' }}"
-                                                {{ $child->children->isNotEmpty() ? 'data-toggle=dropdown' : '' }}>
-                                                {{ $child->label }}
-                                            </a>
+                                class="{{ $child->children->isNotEmpty() ? 'dropdown-toggle' : '' }}" {{
+                                $child->children->isNotEmpty() ? 'data-toggle=dropdown' : '' }}>
+                                {{ $child->label }}
+                            </a>
 
-                                            <!-- Second-level dropdown menu -->
-                                            @if ($child->children->isNotEmpty())
-                                                <ul>
-                                                    @foreach ($child->children as $subchild)
-                                                        <li>
-                                                            <a
-                                                                href="{{ $subchild->page
+                            <!-- Second-level dropdown menu -->
+                            @if ($child->children->isNotEmpty())
+                            <ul>
+                                @foreach ($child->children as $subchild)
+                                <li>
+                                    <a href="{{ $subchild->page
                                                                     ? route('pages.show', $subchild->page->slug)
                                                                     : ($subchild->post
                                                                         ? route('posts.show', $subchild->post->slug)
                                                                         : ($subchild->category
                                                                             ? route('categories.show', $subchild->category->slug)
                                                                             : $subchild->url)) }}">
-                                                                {{ $subchild->label }}
-                                                            </a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            @endif
-                                        </li>
-                                    @endforeach
-                                </ul>
+                                        {{ $subchild->label }}
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
                             @endif
                         </li>
-                    @endforeach
+                        @endforeach
+                    </ul>
+                    @endif
+                </li>
+                @endforeach
                 @endforeach
 
-
-                <li><a href="{{ route('galleries.front') }}">Galleries</a></li>
+                <li><a href="{{ route('galleries.front') }}">Galeri</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>

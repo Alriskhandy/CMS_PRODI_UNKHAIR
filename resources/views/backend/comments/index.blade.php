@@ -31,8 +31,8 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Post</th>
-                                            <th>Name</th>
+                                            <th>Postingan</th>
+                                            <th>Nama</th>
                                             <th>Email</th>
                                             <th>Status</th>
                                             <th>Dikirim Pada</th>

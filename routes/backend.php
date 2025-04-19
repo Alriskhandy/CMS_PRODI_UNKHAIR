@@ -89,6 +89,4 @@ Route::prefix('/cms-unkhair/cp')->middleware('auth')->group(function () {
     Route::put('/comments/{id}', [CommentsController::class, 'update'])->name('comments.update');
     // Hapus Komentar
     Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
-
-
 });

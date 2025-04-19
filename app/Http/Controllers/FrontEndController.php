@@ -54,8 +54,11 @@ class FrontEndController extends Controller
                     ->latest()
                     ->get();
 
+        // dd($page);
+
         return view($theme . '.detail_post', compact('comments','page'));
     }
+    
     public function showCategories($slug)
     {
         $theme = Theme::where('active', true)->first()->path;
