@@ -42,9 +42,20 @@
 <div class="container">
 
 
-    <div class="container aos-init aos-animate mb-3" data-aos="fade-up">
-        <div class="d-flex align-items-center justify-content-center">
-            <h2>Galeri</h2>
+    <!-- Page Title -->
+    <div class="page-title py-3">
+        <div class="container d-lg-flex justify-content-between align-items-center">
+            <h1 class="my-2 my-lg-0">Galeri</h1>
+            <nav class="breadcrumbs" aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="{{ url('/') }}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Galeri
+                    </li>
+                </ol>
+            </nav>
         </div>
     </div>
     <hr class="my-3" style="border-top: 3px solid #2a2a2a;">
