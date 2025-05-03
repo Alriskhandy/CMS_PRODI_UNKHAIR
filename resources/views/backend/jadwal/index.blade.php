@@ -1,4 +1,4 @@
-@extends('backend.layouts.main', ['title' => 'Comments'])
+@extends('backend.layouts.main', ['title' => 'Jadwal Perkuliahan'])
 
 @section('body')
 <div class="container">

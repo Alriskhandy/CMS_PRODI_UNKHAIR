@@ -98,6 +98,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ request()->routeIs('dosen.index') ? 'active' : '' }}">
+                    <a href="{{ route('dosen.index') }}">
+                        <i class="far fa-user"></i>
+                        <p>Daftar Dosen</p>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ request()->routeIs('tema.index') ? 'active' : '' }}">
                     <a href="{{ route('tema.index') }}">
                         <i class="far fa-window-restore"></i>

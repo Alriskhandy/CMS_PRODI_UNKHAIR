@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     CommentsController,
     DashboardController,
+    DosenController,
     GalleriesController,
     GeneralSettingsController,
     JadwalController,
@@ -50,6 +51,14 @@ Route::prefix('/cms-unkhair/cp')->middleware('auth')->group(function () {
     Route::post('/jadwal/store', [JadwalController::class, 'store'])->name('jadwal.create');
     Route::put('/jadwal/{id}', [JadwalController::class, 'update'])->name('jadwal.edit');
     Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
+
+    // Daftar Dosen
+    Route::get('/daftar-dosen', [DosenController::class, 'index'])->name('dosen.index');
+    Route::get('/daftar-dosen/create', [DosenController::class, 'create'])->name('dosen.create');
+    Route::post('/daftar-dosen/store', [DosenController::class, 'store'])->name('dosen.store');
+    Route::get('/daftar-dosen/{id}', [DosenController::class, 'edit'])->name('dosen.edit');
+    Route::put('/daftar-dosen/{id}', [DosenController::class, 'update'])->name('dosen.update');
+    Route::delete('/daftar-dosen/{id}', [DosenController::class, 'destroy'])->name('dosen.destroy');
 
     // Theme
     Route::get('/tema', [ThemeController::class, 'index'])->name('tema.index');
