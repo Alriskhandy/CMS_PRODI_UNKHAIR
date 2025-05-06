@@ -14,6 +14,7 @@ use App\Http\Controllers\{
     PostsCategoriesController,
     PostsController,
     ProfileController,
+    RPSController,
     ThemeController
 };
 
@@ -59,6 +60,12 @@ Route::prefix('/cms-unkhair/cp')->middleware('auth')->group(function () {
     Route::get('/daftar-dosen/{id}', [DosenController::class, 'edit'])->name('dosen.edit');
     Route::put('/daftar-dosen/{id}', [DosenController::class, 'update'])->name('dosen.update');
     Route::delete('/daftar-dosen/{id}', [DosenController::class, 'destroy'])->name('dosen.destroy');
+
+    // Rencana Pembelajaran Semester
+    Route::get('/rps', [RPSController::class, 'index'])->name('rps.index');
+    Route::post('/rps/store', [RPSController::class, 'store'])->name('rps.store');
+    Route::put('/rps/{id}', [RPSController::class, 'update'])->name('rps.update');
+    Route::delete('/rps/{id}', [RPSController::class, 'destroy'])->name('rps.destroy');
 
     // Theme
     Route::get('/tema', [ThemeController::class, 'index'])->name('tema.index');

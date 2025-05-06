@@ -105,6 +105,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ request()->routeIs('rps.index') ? 'active' : '' }}">
+                    <a href="{{ route('rps.index') }}">
+                        <i class="far fa-bookmark"></i>
+                        <p>RPS</p>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ request()->routeIs('tema.index') ? 'active' : '' }}">
                     <a href="{{ route('tema.index') }}">
                         <i class="far fa-window-restore"></i>
