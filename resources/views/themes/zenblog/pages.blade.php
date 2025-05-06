@@ -18,11 +18,11 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-lg-8">
+                <div class="col-lg-8 px-0">
 
                     <!-- Blog Details Section -->
                     <section id="blog-details" class="blog-details section">
-                        <div class="container">
+                        <div class="container ">
 
                             <article class="article">
 

@@ -38,11 +38,21 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="nip" class="form-label">NIP / NIDN</label>
+                                <label for="nip" class="form-label">NIP (opsional)</label>
                                 <input type="text" name="nip" id="nip"
                                     class="form-control @error('nip') is-invalid @enderror"
                                     value="{{ old('nip', $dosen->nip) }}" required>
                                 @error('nip')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nidn" class="form-label">NIDN</label>
+                                <input type="text" name="nidn" id="nidn"
+                                    class="form-control @error('nip') is-invalid @enderror"
+                                    value="{{ old('nidn', $dosen->nidn) }}" required>
+                                @error('nidn')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

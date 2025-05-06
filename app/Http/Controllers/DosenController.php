@@ -31,7 +31,8 @@ class DosenController extends Controller
             // Validasi input
             $validated = $request->validate([
                 'nama' => 'required|string|max:255',
-                'nip' => 'required|numeric',
+                'nip' => 'string|max:18',
+                'nidn' => 'string|max:10',
                 'jabatan' => 'required|string|max:255',
                 'foto' => 'required|file|mimes:jpg,png,jpeg|max:5120',
             ]);
@@ -43,6 +44,7 @@ class DosenController extends Controller
             $dosen = new Dosen();
             $dosen->nama = $validated['nama'];
             $dosen->nip = $validated['nip'];
+            $dosen->nidn = $validated['nidn'];
             $dosen->jabatan = $validated['jabatan'];
             $dosen->foto = $filePath; // Simpan path foto
             $dosen->save();
@@ -51,7 +53,7 @@ class DosenController extends Controller
             return redirect()->route('dosen.index');
         } catch (\Throwable $th) {
             notify()->error('Data Dosen gagal dibuat! - ' . $th->getMessage());
-            return redirect()->route('dosen.index')->withInput();
+            return redirect()->back()->withInput();
         }
     }
 
@@ -63,7 +65,8 @@ class DosenController extends Controller
             // Validasi input
             $validated = $request->validate([
                 'nama' => 'required|string|max:255',
-                'nip' => 'required|numeric',
+                'nip' => 'string|max:18',
+                'nidn' => 'string|max:10',
                 'jabatan' => 'required|string|max:255',
                 'foto' => 'nullable|file|mimes:jpg,png,jpeg|max:5120',
             ]);
@@ -71,6 +74,7 @@ class DosenController extends Controller
             // Update data dasar
             $dosen->nama = $validated['nama'];
             $dosen->nip = $validated['nip'];
+            $dosen->nidn = $validated['nidn'];
             $dosen->jabatan = $validated['jabatan'];
 
             // Cek apakah ada file foto baru

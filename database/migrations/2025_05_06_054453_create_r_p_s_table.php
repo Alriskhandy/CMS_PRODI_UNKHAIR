@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rps', function (Blueprint $table) {
             $table->id();
             $table->string('file');
-            $table->string('deskrips')->nullable();
+            $table->string('deskripsi')->nullable();
             $table->timestamps();
         });
     }
