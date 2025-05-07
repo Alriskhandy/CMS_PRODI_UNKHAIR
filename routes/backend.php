@@ -50,7 +50,7 @@ Route::prefix('/cms-unkhair/cp')->middleware('auth')->group(function () {
     // Jadwal Perkuliahan
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
     Route::post('/jadwal/store', [JadwalController::class, 'store'])->name('jadwal.create');
-    Route::put('/jadwal/{id}', [JadwalController::class, 'update'])->name('jadwal.edit');
+    Route::get('/jadwal/{id}', [JadwalController::class, 'show'])->name('jadwal.detail');
     Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
 
     // Daftar Dosen

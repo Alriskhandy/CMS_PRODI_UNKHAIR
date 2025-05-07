@@ -87,59 +87,10 @@
                                         <td>{{ $j->file }}</td>
                                         <td>{{ $j->created_at->format('d M Y') }}</td>
                                         <td class="d-flex flex-wrap gap-2">
-                                            {{-- <a href="{{ route('jadwal.edit', $j->id) }}"
-                                                class="btn btn-warning btn-sm" title="Edit">
-                                                <i class="fa fa-edit"></i>
-                                            </a> --}}
-                                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#jadwal{{ $j->id }}">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <!-- Modal Edit -->
-                                            <div class="modal fade" id="jadwal{{ $j->id }}" data-bs-backdrop="static"
-                                                data-bs-keyboard="false" tabindex="-1"
-                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="staticBackdropLabel">Edit
-                                                                Jadwal Perkuliahan</h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close">
-                                                                <i class="fa fa-exit"></i>
-                                                            </button>
-                                                        </div>
-                                                        <form action="{{ route('jadwal.edit', $j->id)  }}" method="POST"
-                                                            enctype="multipart/form-data">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <div class="modal-body">
-                                                                <div class="mb-3">
-                                                                    <label for="formFile" class="form-label">Tahun
-                                                                        Ajaran</label>
-                                                                    <input class="form-control" type="text"
-                                                                        id="formText" placeholder="2025/2026 Genap"
-                                                                        name="tahun_ajaran"
-                                                                        value="{{ $j->tahun_ajaran }}">
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="formFile" class="form-label">File
-                                                                        Jadwal</label>
-                                                                    <input class="form-control" type="file"
-                                                                        id="formFile" name="file"
-                                                                        value="{{ $j->file }}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button class="btn btn-label-secondary btn-round"
-                                                                    data-bs-dismiss="modal">Tutup</button>
-                                                                <button type="submit"
-                                                                    class="btn btn-label-success btn-round">Simpan</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a href="{{ route('jadwal.detail', $j->id) }}"
+                                                class="btn btn-warning btn-sm" title="Lihat">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
 
                                             <button type="button" class="btn btn-danger btn-sm"
                                                 onclick="confirmDelete({{ $j->id }})" title="Delete">

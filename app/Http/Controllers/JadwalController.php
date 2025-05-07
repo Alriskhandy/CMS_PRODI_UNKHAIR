@@ -14,6 +14,12 @@ class JadwalController extends Controller
         return view('backend.jadwal.index', compact('jadwal'));
     }
 
+    public function show($id)
+    {
+        $jadwal = Jadwal::findOrFail($id);
+        return view('backend.jadwal.detail', compact('jadwal'));
+    }
+
     public function store(Request $request)
     {
         try {
@@ -40,41 +46,6 @@ class JadwalController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
-    {
-        try {
-            $jadwal = Jadwal::findOrFail($id);
-
-            // Validasi input
-            $validated = $request->validate([
-                'tahun_ajaran' => 'required|string|max:255',
-                'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx|max:2048',
-            ]);
-
-            // Update tahun ajaran
-            $jadwal->tahun_ajaran = $validated['tahun_ajaran'];
-
-            // Cek apakah ada file baru
-            if ($request->hasFile('file')) {
-                // Hapus file lama jika ada
-                if ($jadwal->file && Storage::disk('public')->exists($jadwal->file)) {
-                    Storage::disk('public')->delete($jadwal->file);
-                }
-
-                // Upload file baru
-                $filePath = $request->file('file')->store('jadwal', 'public');
-                $jadwal->file = $filePath;
-            }
-
-            $jadwal->save();
-
-            notify()->success('Jadwal berhasil diperbarui!');
-            return redirect()->route('jadwal.index');
-        } catch (\Throwable $th) {
-            notify()->error('Jadwal gagal diperbarui! - ' . $th->getMessage());
-            return redirect()->back()->withInput();
-        }
-    }
 
     public function destroy($id)
     {
