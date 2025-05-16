@@ -6,7 +6,7 @@
             <a href="{{ route('dashboard') }}" class="logo">
                 <img src="{{ asset('backend/assets/img/logo-unkhair.png') }}" alt="navbar brand"
                     class="navbar-brand img-fluid" />
-                <h5 class="text-white m-2">CMS UNKHAIR</h5>
+                <h5 class="text-white m-2">CMS PANEL</h5>
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -112,18 +112,18 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ request()->routeIs('tema.index') ? 'active' : '' }}">
-                    <a href="{{ route('tema.index') }}">
-                        <i class="far fa-window-restore"></i>
-                        <p>Tema</p>
-                    </a>
-                </li>
-
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
                     <h4 class="text-section">Pengaturan</h4>
+                </li>
+
+                <li class="nav-item {{ request()->routeIs('pengguna.index') ? 'active' : '' }}">
+                    <a href="{{ route('pengguna.index') }}">
+                        <i class="far fa-user"></i>
+                        <p>Pengguna</p>
+                    </a>
                 </li>
 
                 <li class="nav-item {{ request()->routeIs('pages.*') ? 'active submenu' : '' }}">
@@ -148,14 +148,35 @@
                     </div>
                 </li>
 
-                <li class="nav-item {{ request()->routeIs('menus.create') ? 'active' : '' }}">
-                    <a href="{{ route('menus.create') }}">
-                        <i class="fas fa-caret-square-right"></i>
-                        <p>Menu</p>
+                <li class="nav-item {{ request()->routeIs('users.*') ? 'active submenu' : '' }}">
+                    <a data-bs-toggle="collapse" href="#charts">
+                        <i class="fas fa-eye"></i>
+                        <p>Tampilan</p>
+                        <span class="caret"></span>
                     </a>
+                    <div class="collapse {{ request()->routeIs('settings.*') ? 'show' : '' }}" id="charts">
+                        <ul class="nav nav-collapse">
+                            <li class="{{ request()->routeIs('settings.index') ? 'active' : '' }}">
+                                <a href="{{ route('settings.index') }}">
+                                    <span class="sub-item">Umum</span>
+                                </a>
+                            </li>
+
+                            <li class="{{ request()->routeIs('tema.index') ? 'active' : '' }}">
+                                <a href="{{ route('tema.index') }}">
+                                    <span class="sub-item">Tema</span>
+                                </a>
+                            </li>
+                            <li class="{{ request()->routeIs('menus.create') ? 'active' : '' }}">
+                                <a href="{{ route('menus.create') }}">
+                                    <span class="sub-item">Menu</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
 
-                <li class="nav-item {{ request()->routeIs('users.*') ? 'active submenu' : '' }}">
+                {{-- <li class="nav-item {{ request()->routeIs('users.*') ? 'active submenu' : '' }}">
                     <a data-bs-toggle="collapse" href="#charts">
                         <i class="fas fa-cogs"></i>
                         <p>Pengaturan</p>
@@ -169,13 +190,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('pengguna.index') }}">
                                     <span class="sub-item">Pengguna</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
 
                 {{-- <li class="nav-item {{ request()->routeIs('settings.*') ? 'active' : '' }}">
                     <a href="{{ route('settings.index') }}">

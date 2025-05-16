@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     DosenController,
     GalleriesController,
     GeneralSettingsController,
+    InvitesController,
     JadwalController,
     MediaController,
     MenuItemController,
@@ -15,7 +16,7 @@ use App\Http\Controllers\{
     PostsController,
     ProfileController,
     RPSController,
-    ThemeController
+    ThemeController,
 };
 
 Route::prefix('/cms-unkhair/cp')->middleware('auth')->group(function () {
@@ -91,6 +92,13 @@ Route::prefix('/cms-unkhair/cp')->middleware('auth')->group(function () {
     Route::get('/backup/download', [GeneralSettingsController::class, 'downloadBackup'])->name('backup.download');
     Route::get('/backup/storage', [GeneralSettingsController::class, 'downloadStorageBackup'])->name('backup.storage');
 
+    // Manajemen Pengguna
+    Route::get('/pengguna', [InvitesController::class, 'index'])->name('pengguna.index');
+    Route::post('/pengguna/undang', [InvitesController::class, 'invitesUser'])->name('pengguna.undang');
+    Route::get('/pengguna/send-email/{email}', [InvitesController::class, 'sendEmail'])->name('pengguna.email');
+
+
+
     // Settings
     Route::get('/settings', [GeneralSettingsController::class, 'index'])->name('settings.index');
     Route::post('/settings', [GeneralSettingsController::class, 'update'])->name('settings.update');
@@ -110,4 +118,8 @@ Route::prefix('/cms-unkhair/cp')->middleware('auth')->group(function () {
     Route::get('/comments/{id}/edit', [CommentsController::class, 'edit'])->name('comments.edit');
     Route::put('/comments/{id}', [CommentsController::class, 'update'])->name('comments.update');
     Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
+});
+Route::middleware('guest')->group(function () {
+    Route::get('invitation/accept', [InvitesController::class, 'accept']);
+    Route::post('invitation/register', [InvitesController::class, 'storeNewUser'])->name('storeNewUser');
 });
