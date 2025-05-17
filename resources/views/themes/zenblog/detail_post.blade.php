@@ -31,7 +31,7 @@
             <h1 class="mb-2 mb-lg-0">{{ $page->title }}</h1>
             <nav class="breadcrumbs">
                 <ol>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/">HOME</a></li>
                     <li class="current">{{ $page->title }}</li>
                 </ol>
             </nav>
@@ -77,7 +77,7 @@
 
                             </div> <!-- End Share Buttons -->
                         </article>
-                        
+
                         @if ($page->comments_is_active)
                         <!-- Comments Section -->
                         <section id="comments" class="comments section mt-5">

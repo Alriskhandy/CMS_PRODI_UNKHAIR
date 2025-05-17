@@ -151,6 +151,13 @@
                     </div>
                 </li>
 
+                <li class="nav-item {{ request()->routeIs('menus.create') ? 'active' : '' }}">
+                    <a href="{{ route('menus.create') }}">
+                        <i class="far fa-caret-square-right"></i>
+                        <span class="sub-item">Menu</span>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ request()->routeIs('users.*') ? 'active submenu' : '' }}">
                     <a data-bs-toggle="collapse" href="#charts">
                         <i class="fas fa-eye"></i>
@@ -168,11 +175,6 @@
                             <li class="{{ request()->routeIs('tema.index') ? 'active' : '' }}">
                                 <a href="{{ route('tema.index') }}">
                                     <span class="sub-item">Tema</span>
-                                </a>
-                            </li>
-                            <li class="{{ request()->routeIs('menus.create') ? 'active' : '' }}">
-                                <a href="{{ route('menus.create') }}">
-                                    <span class="sub-item">Menu</span>
                                 </a>
                             </li>
                         </ul>

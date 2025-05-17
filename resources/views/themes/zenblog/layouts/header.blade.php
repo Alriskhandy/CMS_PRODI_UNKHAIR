@@ -1,4 +1,4 @@
-<div class="container section">
+<div class="container section pb-0">
     <img class="img-fluid" src="{{ asset('hero.jpg') }}" alt="">
 </div>
 <header id="header" class="header d-flex align-items-center sticky-top ">
@@ -7,13 +7,13 @@
         <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <img src="{{ asset('storage/' . $site_logo->value) }}" alt="">
-            <h1 class="sitename">{{ $site_name->value }}</h1>
+            <h2 class="sitename fs-3 my-0">{{ $site_name->value }}</h2>
         </a>
 
         <nav id="navmenu" class="navmenu">
             <ul>
 
-                <li><a href="/">Beranda</a></li>
+                <li><a href="/">HOME</a></li>
                 @foreach ($menus as $menu)
                 @foreach ($menu->items as $item)
                 <li class="{{ $item->children->isNotEmpty() ? 'dropdown' : '' }}">
@@ -74,7 +74,7 @@
                 @endforeach
                 @endforeach
 
-                <li><a href="{{ route('galleries.front') }}">Galeri</a></li>
+                <li><a href="{{ route('galleries.front') }}">GALERI</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>

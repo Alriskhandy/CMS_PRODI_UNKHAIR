@@ -90,17 +90,12 @@
                     <a href="#">Menu</a>
                 </li>
             </ul>
-            </ul>
-            <div class="ms-md-auto py-2 py-md-0">
-                {{-- <a href="#" class="btn btn-label-info btn-round me-2">Manage</a> --}}
-                {{-- <a href="#" class="btn btn-primary btn-round"><i class="fa fa-plus"></i> Tambah User</a> --}}
-            </div>
         </div>
 
 
         <div class="row">
-
             <div class="col-lg-6">
+
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">Tambah Menu</h2>
@@ -216,9 +211,11 @@
                         </form>
                     </div>
                 </div>
+
             </div>
 
             <div class="col-lg-6">
+
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">Struktur Menu</h2>
@@ -498,11 +495,8 @@
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
-
-
         </div>
 
         <!-- Hidden field to store serialized menu structure -->
@@ -562,13 +556,14 @@
 <script>
     function konfirmasiHapus(id) {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "This action cannot be undone!",
+                title: 'Apakah anda yakin?',
+                text: "Tindakan ini tidak bisa di batalkan!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#f55a54',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
                     const form = document.getElementById('delete-form');

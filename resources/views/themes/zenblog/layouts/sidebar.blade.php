@@ -4,9 +4,9 @@
 
         <!-- Search Widget -->
         <div class="search-widget widget-item">
-            <h3 class="widget-title">Search</h3>
+            <h3 class="widget-title">Pencarian</h3>
             <form action="{{ route('search') }}" method="GET">
-                <input type="text" name="q" placeholder="Search..." value="{{ request('q') }}">
+                <input type="text" name="q" placeholder="Cari..." value="{{ request('q') }}">
                 <button type="submit" title="Search">
                     <i class="bi bi-search"></i>
                 </button>
@@ -23,7 +23,7 @@
                     <div>
                         <h4><a href="{{ route('posts.show', $post->slug) }}">{{ $post->title }}</a></h4>
                         <time
-                            datetime="{{ $post->created_at->format('Y-m-d') }}">{{ $post->created_at->format('M d, Y') }}</time>
+                            datetime="{{ $post->created_at->format('Y-m-d') }}">{{ $post->created_at->format('d M Y') }}</time>
                     </div>
                 </div><!-- End post item-->
             @endforeach

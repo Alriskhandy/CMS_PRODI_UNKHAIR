@@ -15,6 +15,7 @@ class GalleriesController extends Controller
     public function index()
     {
         $galleries = Galleries::all();  // Ambil semua galeri
+        // dd($galleries);
         return view('backend.galleries.index', compact('galleries'));
     }
 
