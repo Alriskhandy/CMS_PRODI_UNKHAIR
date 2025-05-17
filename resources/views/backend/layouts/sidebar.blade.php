@@ -91,6 +91,8 @@
                     </a>
                 </li>
 
+                @can('IsAdmin')
+
                 <li class="nav-item {{ request()->routeIs('jadwal.index') ? 'active' : '' }}">
                     <a href="{{ route('jadwal.index') }}">
                         <i class="far fa-calendar"></i>
@@ -111,6 +113,7 @@
                         <p>RPS</p>
                     </a>
                 </li>
+
 
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
@@ -175,6 +178,8 @@
                         </ul>
                     </div>
                 </li>
+
+                @endcan
 
                 {{-- <li class="nav-item {{ request()->routeIs('users.*') ? 'active submenu' : '' }}">
                     <a data-bs-toggle="collapse" href="#charts">

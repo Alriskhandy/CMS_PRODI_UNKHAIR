@@ -2,5 +2,6 @@
 
 return [
     App\Providers\AppServiceProvider::class,
-    App\Providers\ThemeServiceProvider::class,
+    App\Providers\AuthServiceProvider::class,
+    App\Providers\RouteServiceProvider::class,
 ];

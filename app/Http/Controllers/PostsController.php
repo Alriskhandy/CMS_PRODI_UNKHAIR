@@ -11,80 +11,65 @@ use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
-    // public function index(Request $request)
-    // {
-    //     // Mendapatkan status dari query string
-    //     $status = $request->query('status');
-
-    //     // Menghitung total posts yang tidak dihapus
-    //     $totalPosts = Posts::whereNull('deleted_at')->count();
-
-    //     // Menghitung total posts yang dihapus
-    //     $totalTrashed = Posts::onlyTrashed()->count();
-
-    //     // Memilih posts berdasarkan status
-    //     if ($status === 'trashed') {
-    //         $posts = Posts::onlyTrashed()->with('categories')->get();
-    //     } else {
-    //         $posts = Posts::whereNull('deleted_at')->with('categories')->get();
-    //     }
-    //     // dd($posts);
-    //     // Menentukan apakah ada posts yang dihapus
-    //     $hasTrashed = $totalTrashed > 0;
-
-    //     $categories = Categories::all();
-
-    //     // Mengembalikan tampilan dengan data yang diperlukan
-    //     return view('backend.posts.index', compact('posts','categories', 'status', 'hasTrashed', 'totalPosts', 'totalTrashed'));
-    // }
     public function index(Request $request)
     {
         // Mendapatkan status dari query string
         $status = $request->query('status');
 
-        // Menghitung total posts yang tidak dihapus
-        $totalPosts = Posts::whereNull('deleted_at')->count();
+        // Mendapatkan user yang sedang login
+        $user = Auth::user();
 
-        // Menghitung total posts yang dihapus
-        $totalTrashed = Posts::onlyTrashed()->count();
+        // Menghitung total posts berdasarkan role
+        if ($user->role->nama_role === 'Admin') {
+            $totalPosts = Posts::whereNull('deleted_at')->count();
+            $totalTrashed = Posts::onlyTrashed()->count();
+        } else {
+            $totalPosts = Posts::whereNull('deleted_at')
+                ->where('author', $user->name)
+                ->count();
 
-        // Memilih posts berdasarkan status
+            $totalTrashed = Posts::onlyTrashed()
+                ->where('author', $user->name)
+                ->count();
+        }
+
+        // Ambil postingan berdasarkan status dan role
         if ($status === 'trashed') {
-            // Mengambil posts yang dihapus dan mengurutkan berdasarkan yang terbaru
             $posts = Posts::onlyTrashed()
+                ->when($user->role->nama_role !== 'Admin', function ($query) use ($user) {
+                    $query->where('author', $user->name);
+                })
                 ->with('categories')
-                ->orderBy('deleted_at', 'desc') // Urutkan berdasarkan deleted_at (terbaru)
+                ->orderBy('deleted_at', 'desc')
                 ->get();
         } else {
-            // Mengambil posts yang tidak dihapus dan mengurutkan berdasarkan yang terbaru
             $posts = Posts::whereNull('deleted_at')
+                ->when($user->role->nama_role !== 'Admin', function ($query) use ($user) {
+                    $query->where('author', $user->name);
+                })
                 ->with('categories')
-                ->orderBy('created_at', 'desc') // Urutkan berdasarkan created_at (terbaru)
+                ->orderBy('created_at', 'desc')
                 ->get();
         }
 
         // Menentukan apakah ada posts yang dihapus
         $hasTrashed = $totalTrashed > 0;
-
         $categories = Categories::all();
 
         // Mengembalikan tampilan dengan data yang diperlukan
         return view('backend.posts.index', compact('posts', 'categories', 'status', 'hasTrashed', 'totalPosts', 'totalTrashed'));
     }
 
-
     public function create()
     {
-        // Menghitung jumlah post yang sudah diberi status 'is_featured' dan 'is_banner'
-        $featuredCount = Posts::where('is_featured', 1)->count();
-        $bannerCount = Posts::where('is_banner', 1)->count();
+        $canBeFeatured = Posts::where('is_featured', 1)->count() < 4;
+        $canBeBanner = Posts::where('is_banner', 1)->count() < 3;
 
-        // Menentukan apakah fitur is_featured dan is_banner dapat diaktifkan
-        $canBeFeatured = $featuredCount < 4; // Batas maksimal 4
-        $canBeBanner = $bannerCount < 3;     // Batas maksimal 3
-
-        $categories = Categories::all();
-        return view('backend.posts.create', compact('categories', 'canBeFeatured', 'canBeBanner'));
+        return view('backend.posts.create', [
+            'categories' => Categories::all(),
+            'canBeFeatured' => $canBeFeatured,
+            'canBeBanner' => $canBeBanner,
+        ]);
     }
 
     public function store(Request $request)
@@ -140,6 +125,11 @@ class PostsController extends Controller
     {
         // Temukan post berdasarkan ID
         $post = Posts::findOrFail($id);
+
+        if (Auth::user()->role->nama_role !== 'Admin' && Auth::user()->name !== $post->author) {
+            return back();
+        }
+
         return view('backend.posts.show', compact('post'));
     }
 
@@ -148,63 +138,72 @@ class PostsController extends Controller
         $action = $request->input('action');
         $selectedPosts = $request->input('selected_posts', []);
 
-        if ($selectedPosts) {
-            if ($action === 'trash') {
-                Posts::whereIn('id', $selectedPosts)
-                    ->update(['status' => PostStatus::Trashed->value, 'deleted_at' => now()]);
-                notify()->success('Tindakan bulk berhasil dilakukan: Posts dihapus.');
-            } elseif ($action === 'delete') {
-                Posts::whereIn('id', $selectedPosts)->forceDelete();
-                notify()->success('Tindakan bulk berhasil dilakukan: Posts dihapus permanen.');
-            } elseif ($action === 'publish') {
-                Posts::whereIn('id', $selectedPosts)
-                    ->update(['status' => PostStatus::Published->value]);
-                notify()->success('Tindakan bulk berhasil dilakukan: Posts diterbitkan.');
-            } elseif ($action === 'draft') {
-                Posts::whereIn('id', $selectedPosts)
-                    ->update(['status' => PostStatus::Draft->value]);
-                notify()->success('Tindakan bulk berhasil dilakukan: Posts dijadikan draft.');
-            } elseif ($action === 'kembalikan') {
-                Posts::whereIn('id', $selectedPosts)
-                    ->restore(); // Mengembalikan dari soft delete
-                Posts::whereIn('id', $selectedPosts)
-                    ->update(['status' => PostStatus::Published->value]);
-                notify()->success('Tindakan bulk berhasil dilakukan: Posts dikembalikan.');
-            } else {
-                notify()->error('Pilih Tindakan!');
-                return redirect()->back();
-            }
-
-            return redirect()->route('posts.index', ['status' => $request->query('status')]);
-        } else {
+        if (!$selectedPosts) {
             notify()->error('Pilih Post Terlebih Dahulu!');
             return redirect()->back();
         }
+
+        switch ($action) {
+            case 'trash':
+                Posts::whereIn('id', $selectedPosts)
+                    ->update(['status' => PostStatus::Trashed->value, 'deleted_at' => now()]);
+                notify()->success('Posts berhasil dipindahkan ke tong sampah.');
+                break;
+
+            case 'delete':
+                Posts::whereIn('id', $selectedPosts)->forceDelete();
+                notify()->success('Posts berhasil dihapus permanen.');
+                break;
+
+            case 'publish':
+                Posts::whereIn('id', $selectedPosts)
+                    ->update(['status' => PostStatus::Published->value]);
+                notify()->success('Posts berhasil diterbitkan.');
+                break;
+
+            case 'draft':
+                Posts::whereIn('id', $selectedPosts)
+                    ->update(['status' => PostStatus::Draft->value]);
+                notify()->success('Posts berhasil diubah ke draft.');
+                break;
+
+            case 'kembalikan':
+                Posts::whereIn('id', $selectedPosts)->restore();
+                Posts::whereIn('id', $selectedPosts)
+                    ->update(['status' => PostStatus::Published->value]);
+                notify()->success('Posts berhasil dikembalikan.');
+                break;
+
+            default:
+                notify()->error('Pilih Tindakan!');
+                return redirect()->back();
+        }
+
+        return redirect()->route('posts.index', ['status' => $request->query('status')]);
     }
 
     public function edit(Posts $post)
     {
+        if (Auth::user()->role->nama_role !== 'Admin' && Auth::user()->name !== $post->author) {
+            return back();
+        }
 
-        // Temukan post berdasarkan ID
-        // $post = Posts::findOrFail($slug);
-        $categories = Categories::all(); // Mengambil semua kategori untuk dropdown
-        // Menghitung jumlah post dengan is_featured = 1 dan is_banner = 1
-        $featuredCount = Posts::where('is_featured', 1)->count();
-        $bannerCount = Posts::where('is_banner', 1)->count();
+        $canBeFeatured = Posts::where('is_featured', 1)->count() < 4;
+        $canBeBanner = Posts::where('is_banner', 1)->count() < 3;
 
-        // Menentukan apakah opsi is_featured dan is_banner bisa dipilih
-        $canBeFeatured = $featuredCount < 4; // Batas 4 untuk featured
-        $canBeBanner = $bannerCount < 3;     // Batas 3 untuk banner
-
-        // dd($post);
-        // dd($post->status); // This will halt execution and display the status
-        return view('backend.posts.edit', compact('post', 'categories', 'canBeFeatured', 'canBeBanner'));
+        return view('backend.posts.edit', [
+            'post' => $post,
+            'categories' => Categories::all(),
+            'canBeFeatured' => $canBeFeatured,
+            'canBeBanner' => $canBeBanner,
+        ]);
     }
-
 
     public function update(Request $request, Posts $post)
     {
-        // $post = Posts::findOrFail($slug);
+        if (Auth::user()->role->nama_role !== 'Admin' && Auth::user()->name !== $post->author) {
+            return back();
+        }
         // Validasi untuk memastikan 'is_banner' hanya dibutuhkan jika radio button aktif
         $canBeBanner = Posts::where('is_banner', 1)->count() < 3; // Hanya bisa ada maksimal 3 banner
         $canBeFeatured = Posts::where('is_featured', 1)->count() < 4; // Hanya bisa ada maksimal 4 featured posts

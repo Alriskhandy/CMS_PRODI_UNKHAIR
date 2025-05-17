@@ -29,10 +29,6 @@ Route::prefix('/cms-unkhair/cp')->middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Media
-    Route::get('/media', [MediaController::class, 'index'])->name('media.index');
-    Route::post('/upload', [MediaController::class, 'upload'])->name('file.upload');
-
     // Posts
     Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
     Route::get('/create-post', [PostsController::class, 'create'])->name('posts.create');
@@ -48,60 +44,9 @@ Route::prefix('/cms-unkhair/cp')->middleware('auth')->group(function () {
     Route::put('/posts/categories/all/{id}', [PostsCategoriesController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{id}', [PostsCategoriesController::class, 'destroy'])->name('categories.destroy');
 
-    // Jadwal Perkuliahan
-    Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
-    Route::post('/jadwal/store', [JadwalController::class, 'store'])->name('jadwal.create');
-    Route::get('/jadwal/{id}', [JadwalController::class, 'show'])->name('jadwal.detail');
-    Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
-
-    // Daftar Dosen
-    Route::get('/daftar-dosen', [DosenController::class, 'index'])->name('dosen.index');
-    Route::get('/daftar-dosen/create', [DosenController::class, 'create'])->name('dosen.create');
-    Route::post('/daftar-dosen/store', [DosenController::class, 'store'])->name('dosen.store');
-    Route::get('/daftar-dosen/{id}', [DosenController::class, 'edit'])->name('dosen.edit');
-    Route::put('/daftar-dosen/{id}', [DosenController::class, 'update'])->name('dosen.update');
-    Route::delete('/daftar-dosen/{id}', [DosenController::class, 'destroy'])->name('dosen.destroy');
-
-    // Rencana Pembelajaran Semester
-    Route::get('/rps', [RPSController::class, 'index'])->name('rps.index');
-    Route::post('/rps/store', [RPSController::class, 'store'])->name('rps.store');
-    Route::put('/rps/{id}', [RPSController::class, 'update'])->name('rps.update');
-    Route::delete('/rps/{id}', [RPSController::class, 'destroy'])->name('rps.destroy');
-
-    // Theme
-    Route::get('/tema', [ThemeController::class, 'index'])->name('tema.index');
-    Route::get('/ganti-tema/{themeId}', [ThemeController::class, 'switchTheme'])->name('ganti.tema');
-
-    // Pages
-    Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
-    Route::get('/pages/create', [PageController::class, 'create'])->name('pages.create');
-    Route::post('/pages', [PageController::class, 'store'])->name('pages.store');
-    Route::get('/pages/{id}/edit', [PageController::class, 'edit'])->name('pages.edit');
-    Route::put('/pages/{id}', [PageController::class, 'update'])->name('pages.update');
-    Route::delete('/pages/{id}', [PageController::class, 'destroy'])->name('pages.destroy');
-
-    // Menus
-    Route::get('/menus', [MenuItemController::class, 'index'])->name('menus.index');
-    Route::get('/menus/create', [MenuItemController::class, 'create'])->name('menus.create');
-    Route::post('/menus', [MenuItemController::class, 'store'])->name('menus.store');
-    Route::patch('/menus/{menu}/update', [MenuItemController::class, 'update'])->name('menus.update');
-    Route::post('/menu/update-order', [MenuItemController::class, 'updateOrder'])->name('menu.updateOrder');
-    Route::delete('/menu-items/{id}', [MenuItemController::class, 'destroy'])->name('menu-items.destroy');
-
-    // Backup
-    Route::get('/backup/download', [GeneralSettingsController::class, 'downloadBackup'])->name('backup.download');
-    Route::get('/backup/storage', [GeneralSettingsController::class, 'downloadStorageBackup'])->name('backup.storage');
-
-    // Manajemen Pengguna
-    Route::get('/pengguna', [InvitesController::class, 'index'])->name('pengguna.index');
-    Route::post('/pengguna/undang', [InvitesController::class, 'invitesUser'])->name('pengguna.undang');
-    Route::get('/pengguna/send-email/{email}', [InvitesController::class, 'sendEmail'])->name('pengguna.email');
-
-
-
-    // Settings
-    Route::get('/settings', [GeneralSettingsController::class, 'index'])->name('settings.index');
-    Route::post('/settings', [GeneralSettingsController::class, 'update'])->name('settings.update');
+    // Media
+    Route::get('/media', [MediaController::class, 'index'])->name('media.index');
+    Route::post('/upload', [MediaController::class, 'upload'])->name('file.upload');
 
     // Galleries
     Route::get('/galleries', [GalleriesController::class, 'index'])->name('galleries.index');
@@ -118,7 +63,66 @@ Route::prefix('/cms-unkhair/cp')->middleware('auth')->group(function () {
     Route::get('/comments/{id}/edit', [CommentsController::class, 'edit'])->name('comments.edit');
     Route::put('/comments/{id}', [CommentsController::class, 'update'])->name('comments.update');
     Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
+
+    // HAK AKSES ADMIN
+    Route::middleware('IsAdmin')->group(function () {
+
+        // Jadwal Perkuliahan
+        Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
+        Route::post('/jadwal/store', [JadwalController::class, 'store'])->name('jadwal.create');
+        Route::get('/jadwal/{id}', [JadwalController::class, 'show'])->name('jadwal.detail');
+        Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy'])->name('jadwal.destroy');
+
+        // Daftar Dosen
+        Route::get('/daftar-dosen', [DosenController::class, 'index'])->name('dosen.index');
+        Route::get('/daftar-dosen/create', [DosenController::class, 'create'])->name('dosen.create');
+        Route::post('/daftar-dosen/store', [DosenController::class, 'store'])->name('dosen.store');
+        Route::get('/daftar-dosen/{id}', [DosenController::class, 'edit'])->name('dosen.edit');
+        Route::put('/daftar-dosen/{id}', [DosenController::class, 'update'])->name('dosen.update');
+        Route::delete('/daftar-dosen/{id}', [DosenController::class, 'destroy'])->name('dosen.destroy');
+
+        // Rencana Pembelajaran Semester
+        Route::get('/rps', [RPSController::class, 'index'])->name('rps.index');
+        Route::post('/rps/store', [RPSController::class, 'store'])->name('rps.store');
+        Route::put('/rps/{id}', [RPSController::class, 'update'])->name('rps.update');
+        Route::delete('/rps/{id}', [RPSController::class, 'destroy'])->name('rps.destroy');
+
+        // Theme
+        Route::get('/tema', [ThemeController::class, 'index'])->name('tema.index');
+        Route::get('/ganti-tema/{themeId}', [ThemeController::class, 'switchTheme'])->name('ganti.tema');
+
+        // Pages
+        Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
+        Route::get('/pages/create', [PageController::class, 'create'])->name('pages.create');
+        Route::post('/pages', [PageController::class, 'store'])->name('pages.store');
+        Route::get('/pages/{id}/edit', [PageController::class, 'edit'])->name('pages.edit');
+        Route::put('/pages/{id}', [PageController::class, 'update'])->name('pages.update');
+        Route::delete('/pages/{id}', [PageController::class, 'destroy'])->name('pages.destroy');
+
+        // Menus
+        Route::get('/menus', [MenuItemController::class, 'index'])->name('menus.index');
+        Route::get('/menus/create', [MenuItemController::class, 'create'])->name('menus.create');
+        Route::post('/menus', [MenuItemController::class, 'store'])->name('menus.store');
+        Route::patch('/menus/{menu}/update', [MenuItemController::class, 'update'])->name('menus.update');
+        Route::post('/menu/update-order', [MenuItemController::class, 'updateOrder'])->name('menu.updateOrder');
+        Route::delete('/menu-items/{id}', [MenuItemController::class, 'destroy'])->name('menu-items.destroy');
+
+        // Manajemen Pengguna
+        Route::get('/pengguna', [InvitesController::class, 'index'])->name('pengguna.index');
+        Route::post('/pengguna/undang', [InvitesController::class, 'invitesUser'])->name('pengguna.undang');
+        Route::get('/pengguna/send-email/{email}', [InvitesController::class, 'sendEmail'])->name('pengguna.email');
+
+        // Settings
+        Route::get('/settings', [GeneralSettingsController::class, 'index'])->name('settings.index');
+        Route::post('/settings', [GeneralSettingsController::class, 'update'])->name('settings.update');
+    });
+
+    // Backup
+    Route::get('/backup/download', [GeneralSettingsController::class, 'downloadBackup'])->name('backup.download');
+    Route::get('/backup/storage', [GeneralSettingsController::class, 'downloadStorageBackup'])->name('backup.storage');
 });
+
+// Invite Pengguna Baru
 Route::middleware('guest')->group(function () {
     Route::get('invitation/accept', [InvitesController::class, 'accept']);
     Route::post('invitation/register', [InvitesController::class, 'storeNewUser'])->name('storeNewUser');
