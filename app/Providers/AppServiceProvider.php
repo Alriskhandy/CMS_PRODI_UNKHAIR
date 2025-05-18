@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
+     * non aktifkan fungsi ini sebelum menjalankan db:seed
      */
     public function boot(): void
     {

@@ -31,13 +31,14 @@ class PostsFactory extends Factory
             'image' => $this->faker->imageUrl(800, 600, 'posts', true, 'Post'),
             'author' => $this->faker->userName,
             'views' => $this->faker->numberBetween(0, 1000),
+            'role_id' => 1,
             'content' => $this->faker->paragraphs(3, true),
             'comments_is_active' => $this->faker->boolean,
             'status' => $this->faker->randomElement(['published', 'draft']),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'deleted_at' => null,
-            'category_id' => $this->faker->numberBetween(1, 10),
+            'category_id' => $this->faker->numberBetween(1, 4),
         ];
     }
 }

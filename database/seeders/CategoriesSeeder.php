@@ -9,16 +9,28 @@ use Illuminate\Database\Seeder;
 class CategoriesSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Jalankan seeder untuk mengisi data kategori postingan ke dalam database.
      */
     public function run(): void
     {
-        Categories::factory()->count(10)->create();
-        Categories::create(
-            ['name' => 'Pengumuman', 'slug' => 'pengumuman'
+        Categories::create([
+            'name' => 'Pengumuman',
+            'slug' => 'pengumuman'
         ]);
-        Categories::create(
-            ['name' => 'Agenda', 'slug' => 'agenda'
+
+        Categories::create([
+            'name' => 'Agenda',
+            'slug' => 'agenda'
+        ]);
+
+        Categories::create([
+            'slug' => 'berita',
+            'name' => 'Berita',
+        ]);
+
+        Categories::create([
+            'slug' => 'news',
+            'name' => 'News',
         ]);
     }
 }
