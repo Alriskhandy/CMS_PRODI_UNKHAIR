@@ -31,8 +31,8 @@ class DosenController extends Controller
             // Validasi input
             $validated = $request->validate([
                 'nama' => 'required|string|max:255',
-                'nip' => 'string|max:18',
-                'nidn' => 'string|max:10',
+                'nip' => 'nullable|string',
+                'nidn' => 'required|string',
                 'jabatan' => 'required|string|max:255',
                 'foto' => 'required|file|mimes:jpg,png,jpeg|max:5120',
             ]);

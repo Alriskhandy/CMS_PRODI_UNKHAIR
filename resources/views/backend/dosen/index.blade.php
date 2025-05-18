@@ -52,7 +52,13 @@
                                     <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $d->nama }}</td>
-                                        <td>{{ $d->nip }} / {{ $d->nidn }}</td>
+                                        <td>
+                                            @if(!empty($d->nip))
+                                            {{ $d->nip }} / {{ $d->nidn }}
+                                            @else
+                                            {{ $d->nidn }}
+                                            @endif
+                                        </td>
                                         <td>{{ $d->jabatan }}</td>
 
                                         <td class="text-center">
@@ -87,7 +93,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>

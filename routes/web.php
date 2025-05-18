@@ -29,6 +29,15 @@ Route::get('/search-menu', [SearchController::class, 'searchMenu'])->middleware(
 Route::get('/galleries', [GalleriesController::class, 'front'])->name('galleries.front');
 Route::get('/gallery/{slug}', [GalleriesController::class, 'detail'])->name('gallery.detail');
 
+// Daftar Dosen
+Route::get('/daftar-dosen', [FrontEndController::class, 'showDosen'])->name('dosen.show');
+
+// Jadwal
+Route::get('/jadwal', [FrontEndController::class, 'showJadwal'])->name('jadwal.show');
+
+// RPS
+Route::get('/rps', [FrontEndController::class, 'showRPS'])->name('rps.show');
+
 // Posts
 Route::get('posts', [FrontEndController::class, 'allPosts'])->name('allPosts');
 Route::get('posts/{slug}', [FrontEndController::class, 'showPost'])->name('posts.show');

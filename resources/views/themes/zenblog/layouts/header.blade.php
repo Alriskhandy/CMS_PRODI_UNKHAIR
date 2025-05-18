@@ -74,6 +74,9 @@
                 @endforeach
                 @endforeach
 
+                <li><a href="{{ route('dosen.show') }}">DAFTAR DOSEN</a></li>
+                <li><a href="{{ route('jadwal.show') }}">JADWAL</a></li>
+                <li><a href="{{ route('rps.show') }}">RPS</a></li>
                 <li><a href="{{ route('galleries.front') }}">GALERI</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

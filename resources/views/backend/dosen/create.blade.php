@@ -39,8 +39,7 @@
                             <div class="mb-3">
                                 <label for="nip" class="form-label">NIP (opsional)</label>
                                 <input type="number" name="nip" id="nip"
-                                    class="form-control @error('nip') is-invalid @enderror" value="{{ old('nip') }}"
-                                    required>
+                                    class="form-control @error('nip') is-invalid @enderror" value="{{ old('nip') }}">
                                 @error('nip')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
